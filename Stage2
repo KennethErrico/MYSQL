@@ -1,0 +1,306 @@
+-- MySQL dump 10.13  Distrib 5.1.73, for redhat-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: kerricodb2
+-- ------------------------------------------------------
+-- Server version	5.1.73
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `Category`
+--
+
+DROP TABLE IF EXISTS `Category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Category` (
+  `Cat_ID` int(11) NOT NULL,
+  `Cat_Name` varchar(255) DEFAULT NULL,
+  `Cat_Description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`Cat_ID`),
+  UNIQUE KEY `Cat_ID` (`Cat_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Category`
+--
+
+LOCK TABLES `Category` WRITE;
+/*!40000 ALTER TABLE `Category` DISABLE KEYS */;
+INSERT INTO `Category` VALUES (1,'Social Sciences','study people'),(2,'Technology','human advancement'),(3,'Engineering','build stuff'),(4,'Mathematics','calculate'),(5,'General Education','remedial classes'),(6,'Creative Arts','make artwork'),(7,'Humanities','help humans'),(8,'Literature','read books'),(9,'Philosophy','think about stuff'),(10,'Physical Science','make stuff interact');
+/*!40000 ALTER TABLE `Category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Course`
+--
+
+DROP TABLE IF EXISTS `Course`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Course` (
+  `Crs_ID` int(11) NOT NULL,
+  `Crs_Number` varchar(6) DEFAULT NULL,
+  `Crs_Name` varchar(255) DEFAULT NULL,
+  `Crs_Description` varchar(255) DEFAULT NULL,
+  `Crs_Credit` int(255) DEFAULT NULL,
+  `Crs_Required` varchar(255) DEFAULT NULL,
+  `Crs_Category` int(255) DEFAULT NULL,
+  `Dept_ID_FK` int(11) NOT NULL,
+  PRIMARY KEY (`Crs_ID`),
+  UNIQUE KEY `Crs_ID` (`Crs_ID`),
+  KEY `Dept_ID_FK` (`Dept_ID_FK`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Course`
+--
+
+LOCK TABLES `Course` WRITE;
+/*!40000 ALTER TABLE `Course` DISABLE KEYS */;
+INSERT INTO `Course` VALUES (1,'ACC101','Accounting I','keep track of money',3,'Yes',1111,1),(2,'AUT102','Muffler Repair','fix a muffler',3,'No',1112,2),(3,'BIO103','Frog Dissection','take frogs apart',3,'Yes',1113,3),(4,'BUS104','Hustle Cash','make that money',3,'Yes',1114,4),(5,'CHM105','Explosions','blow stuff up',3,'Yes',1115,5),(6,'CIS106','C Programming','program in C',4,'Yes',1116,6),(7,'CTN107','Networks I','set up networks',3,'Yes',1117,7),(8,'CTN108','Jazz','learn jazz hands',3,'No',1118,8),(9,'CTN109','Macro Economics','learn big money things',3,'Yes',1119,9),(10,'ENG100','Composition I','learn to write',3,'Yes',1110,10);
+/*!40000 ALTER TABLE `Course` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CourseCategoryBridge`
+--
+
+DROP TABLE IF EXISTS `CourseCategoryBridge`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CourseCategoryBridge` (
+  `CCB_ID` int(11) NOT NULL,
+  `Crs_ID_FK` int(11) DEFAULT NULL,
+  `Cat_ID_FK` int(11) DEFAULT NULL,
+  PRIMARY KEY (`CCB_ID`),
+  KEY `Crs_ID` (`Crs_ID_FK`),
+  KEY `Cat_ID` (`Cat_ID_FK`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CourseCategoryBridge`
+--
+
+LOCK TABLES `CourseCategoryBridge` WRITE;
+/*!40000 ALTER TABLE `CourseCategoryBridge` DISABLE KEYS */;
+INSERT INTO `CourseCategoryBridge` VALUES (1,1,4),(2,2,3),(3,3,10),(4,4,5),(5,5,10),(6,6,2),(7,7,2),(8,8,6),(9,9,1),(10,10,5);
+/*!40000 ALTER TABLE `CourseCategoryBridge` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Department`
+--
+
+DROP TABLE IF EXISTS `Department`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Department` (
+  `Dept_ID` int(11) NOT NULL,
+  `Dept_abbreviation` varchar(3) DEFAULT NULL,
+  `Dept_Name` varchar(255) DEFAULT NULL,
+  `Dept_Description` varchar(255) DEFAULT NULL,
+  `Dept_Phone` varchar(10) DEFAULT NULL,
+  `Dept_Email` varchar(255) DEFAULT NULL,
+  `Div_ID_FK` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Dept_ID`),
+  UNIQUE KEY `Dept_ID` (`Dept_ID`),
+  KEY `Div_ID_FK` (`Div_ID_FK`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Department`
+--
+
+LOCK TABLES `Department` WRITE;
+/*!40000 ALTER TABLE `Department` DISABLE KEYS */;
+INSERT INTO `Department` VALUES (1,'ACC','Accounting','keep track of money','1555555515','acc@necc.com',1),(2,'AUT','Automtive','repair vehicles','1555555525','aut@necc.com',2),(3,'BIO','Biology','study of living organisms','1555555535','bio@necc.com',3),(4,'BUS','Business','make that money','1555555545','bus@necc.com',4),(5,'CHM','Chemistry','mix chemicals','1155555555','chm@necc.com',5),(6,'CIS','Computer Information Technology','program computers','1555555556','cis@necc.com',6),(7,'CTN','Computer Networking Technology','create and maintain computer networks','1555555575','ctn@necc.com',7),(8,'DAN','Dance','shake your butt','1555555558','dan@necc.com',8),(9,'ECO','Economics','production/consumption of wealth','1555555559','eco@necc.com',9),(10,'ENG','English','talk real proper','1555555550','eng@necc.com',10);
+/*!40000 ALTER TABLE `Department` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Division`
+--
+
+DROP TABLE IF EXISTS `Division`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Division` (
+  `Div_ID` int(11) NOT NULL DEFAULT '0',
+  `Div_Name` varchar(255) DEFAULT NULL,
+  `Div_Description` varchar(255) DEFAULT NULL,
+  `Div_Phone` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`Div_ID`),
+  UNIQUE KEY `Div_ID` (`Div_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Division`
+--
+
+LOCK TABLES `Division` WRITE;
+/*!40000 ALTER TABLE `Division` DISABLE KEYS */;
+INSERT INTO `Division` VALUES (1,'Blue','the blue division','1555555551'),(2,'Green','the green division','1555555552'),(3,'Red','the red division','1555555553'),(4,'Purple','the purple division','1555555554'),(5,'Orange','the Orange division','1555555555'),(6,'Grey','the Grey division','1555555556'),(7,'Aqua','the aqua division','1555555557'),(8,'Maroon','the maroon division','1555555558'),(9,'Brown','the brown division','1555555559'),(10,'Magenta','the Magenta division','1555555550');
+/*!40000 ALTER TABLE `Division` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Faculty`
+--
+
+DROP TABLE IF EXISTS `Faculty`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Faculty` (
+  `Fac_ID` int(11) NOT NULL,
+  `Fac_Num` varchar(255) DEFAULT NULL,
+  `Title` varchar(255) DEFAULT NULL,
+  `Fac_Start_Date` date DEFAULT NULL,
+  `Pers_ID_FK` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Fac_ID`),
+  UNIQUE KEY `Fac_ID` (`Fac_ID`),
+  KEY `Pers_ID_FK` (`Pers_ID_FK`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Faculty`
+--
+
+LOCK TABLES `Faculty` WRITE;
+/*!40000 ALTER TABLE `Faculty` DISABLE KEYS */;
+INSERT INTO `Faculty` VALUES (1,'3111','Assistant Professor','2012-01-01',2),(2,'3112','Assistant Professor','2012-06-01',3),(3,'3113','Assistant Professor','2013-01-01',4),(4,'3114','Assistant Professor','2013-06-01',6),(5,'3115','Assistant Professor','2014-01-01',NULL),(6,'3116','Professor','2014-06-01',NULL),(7,'3117','Professor','2015-01-01',NULL),(8,'3118','Professor','2015-06-01',NULL),(9,'3119','Professor','2016-01-01',NULL),(10,'3110','Professor','2016-06-01',NULL);
+/*!40000 ALTER TABLE `Faculty` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Major`
+--
+
+DROP TABLE IF EXISTS `Major`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Major` (
+  `Maj_ID` int(11) NOT NULL DEFAULT '0',
+  `Maj_Name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`Maj_ID`),
+  UNIQUE KEY `Maj_ID` (`Maj_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Major`
+--
+
+LOCK TABLES `Major` WRITE;
+/*!40000 ALTER TABLE `Major` DISABLE KEYS */;
+INSERT INTO `Major` VALUES (1,'Information Technology'),(2,'Biology'),(3,'Business'),(4,'General Education'),(5,'Chemistry'),(6,'Communications'),(7,'Anthropology'),(8,'Criminal Justice'),(9,'Economics'),(10,'History');
+/*!40000 ALTER TABLE `Major` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Person`
+--
+
+DROP TABLE IF EXISTS `Person`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Person` (
+  `Pers_ID` int(11) NOT NULL DEFAULT '0',
+  `P_FName` varchar(255) DEFAULT NULL,
+  `P_LName` varchar(255) DEFAULT NULL,
+  `P_Email` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`Pers_ID`),
+  UNIQUE KEY `P_ID` (`Pers_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Person`
+--
+
+LOCK TABLES `Person` WRITE;
+/*!40000 ALTER TABLE `Person` DISABLE KEYS */;
+INSERT INTO `Person` VALUES (1,'Ken','Errico','kerrico@gmail.com'),(2,'Russ','Gouv','rgouv@gmail.com'),(3,'Jay','Term','jterm@gmail.com'),(4,'Carlos','Esp','cesp@gmail.com'),(5,'John','Cas','jcas@gmail.com'),(6,'Adrianna','Hold','ahold@gmail.com'),(7,'John','Smith','jsmith@gmail.com'),(8,'Jake','Miller','jmill@gmail.com'),(9,'Jackie','Burk','jburk@gmail.com'),(10,'Mike','Kelso','mkelso@gmail.com');
+/*!40000 ALTER TABLE `Person` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Staff`
+--
+
+DROP TABLE IF EXISTS `Staff`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Staff` (
+  `Sta_ID` int(11) NOT NULL,
+  `Employee_Num` varchar(255) DEFAULT NULL,
+  `Staff_Start_Date` date DEFAULT NULL,
+  `Pers_ID_FK` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Sta_ID`),
+  UNIQUE KEY `Sta_ID` (`Sta_ID`),
+  KEY `Pers_ID_FK` (`Pers_ID_FK`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Staff`
+--
+
+LOCK TABLES `Staff` WRITE;
+/*!40000 ALTER TABLE `Staff` DISABLE KEYS */;
+INSERT INTO `Staff` VALUES (1,'2111','2012-01-01',2),(2,'2112','2012-06-01',3),(3,'2113','2013-01-01',4),(4,'2114','2013-06-01',NULL),(5,'2115','2014-01-01',NULL),(6,'2116','2014-06-01',NULL),(7,'2117','2015-01-01',NULL),(8,'2118','2015-06-01',NULL),(9,'2119','2016-01-01',NULL),(10,'2110','2016-06-01',NULL);
+/*!40000 ALTER TABLE `Staff` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Student`
+--
+
+DROP TABLE IF EXISTS `Student`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Student` (
+  `Stu_ID` int(11) NOT NULL,
+  `Stu_Num` varchar(255) DEFAULT NULL,
+  `GPA` decimal(4,2) DEFAULT NULL,
+  `Stu_Start_Date` date DEFAULT NULL,
+  `Maj_ID_FK` int(11) DEFAULT NULL,
+  `Pers_ID_FK` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Student`
+--
+
+LOCK TABLES `Student` WRITE;
+/*!40000 ALTER TABLE `Student` DISABLE KEYS */;
+INSERT INTO `Student` VALUES (1,'1111','3.10','2012-01-01',1,1),(2,'1112','3.20','2012-06-01',2,2),(3,'1113','3.30','2013-01-01',3,3),(4,'1114','3.40','2013-06-01',4,4),(5,'1115','3.50','2014-01-01',5,5),(6,'1116','3.60','2014-06-01',6,6),(7,'1117','3.70','2015-01-01',7,7),(8,'1118','3.80','2015-06-01',8,8),(9,'1119','3.90','2016-01-01',9,9),(10,'1110','3.00','2016-06-01',10,10);
+/*!40000 ALTER TABLE `Student` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-04-25 15:02:35
