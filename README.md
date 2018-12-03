@@ -13,21 +13,21 @@ be uploaded to a Linux server or virtual machine for further inspection.
 
 
 
-          DIVISION                                                                MAJOR            PERSON
-             |                                                                       \            /  |  \
-             |                                                                        \          /   |   \
-             |                                                                         \        /    |    \
-         DEPARTMENT                        DIAGRAM                                      \      /     |     \ 
-            \                                 OF                                        STUDENT    STAFF   FACULTY
-             \                            RELATIONAL                                      |                    |
-              \                            DATABASE                                       |                    |
-               \                                                                    STU_SEC_BRIDGE       FAC_SEC_BRIDGE
-                \                                                                         \                   /
-                 \                                                                         \                 /
-                  \                                                                         \               /
-                   \                                                                         \             /
-                    \                                                                         \           /
-                     \                                                                         \         /
+           DIVISION                                                               MAJOR            PERSON
+              |                                                                      \            /  |  \
+              |                                                                       \          /   |   \
+              |                                                                        \        /    |    \
+           DEPARTMENT                      DIAGRAM                                      \      /     |     \ 
+               \                              OF                                        STUDENT    STAFF   FACULTY
+                \                         RELATIONAL                                      |                    |
+                 \                         DATABASE                                       |                    |
+                  \                                                                 STU_SEC_BRIDGE       FAC_SEC_BRIDGE
+                   \                                                                      \                   /
+                    \                                                                      \                 /
+                     \                                                                      \               /
+                      \                                                                      \             /
+                       \                                                                      \           /
+                        \                                                                      \         /
                       COURSE---------------------------------------------------------------------SECTION
                     /   |   \                                                                       |
                    /    |    \                                                                      |
