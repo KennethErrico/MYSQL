@@ -6,10 +6,9 @@ Taken with Prof. Russell Gouveia at NECC
 
 FINAL PROJECT STAGE 5
 
-In advanced database management NECC provided us with a RedHat Linux server where I 
-created a relational database using MYSQL. The instructions served as a guide
-to be followed loosely as creativity was encouraged. The attached DUMP file can
-be uploaded to a Linux server or virtual machine for further inspection.
+This is a relational database using MYSQL on a CentOS Server (similar to RedHat). 
+The instructions served as a guide to be followed loosely and creativity was encouraged. 
+The attached DUMP file can be uploaded to a Linux server or virtual machine for further inspection.
 
 
 
